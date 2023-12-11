@@ -1,4 +1,4 @@
-﻿namespace Day05
+namespace Day05
 {
     internal class Mappers
     {

@@ -1,4 +1,4 @@
-﻿using Day05;
+using Day05;
 
 internal class SolverPart2
 {

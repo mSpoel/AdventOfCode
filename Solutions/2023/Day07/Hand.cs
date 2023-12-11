@@ -1,4 +1,4 @@
-﻿namespace Day07
+namespace Day07
 {
     public class Hand
     {

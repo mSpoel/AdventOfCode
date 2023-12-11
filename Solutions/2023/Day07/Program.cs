@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Day07;
 
 var watch = Stopwatch.StartNew();

@@ -1,4 +1,4 @@
-﻿using Day03;
+using Day03;
 
 var solver = new SolverPart2();
 

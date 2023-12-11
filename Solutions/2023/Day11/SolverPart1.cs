@@ -1,4 +1,4 @@
-﻿
+
 using Day11;
 
 internal class SolverPart1

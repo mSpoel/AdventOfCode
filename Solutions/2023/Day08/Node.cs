@@ -1,4 +1,4 @@
-﻿namespace Day08
+namespace Day08
 {
     internal class Node
     {

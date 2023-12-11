@@ -1,4 +1,4 @@
-﻿using Day08;
+using Day08;
 using FluentAssertions;
 using Xunit;
 

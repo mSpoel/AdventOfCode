@@ -1,4 +1,4 @@
-﻿namespace Day11
+namespace Day11
 {
     internal class SolverPart2
     {

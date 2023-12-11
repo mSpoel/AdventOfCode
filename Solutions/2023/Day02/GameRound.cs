@@ -1,4 +1,4 @@
-﻿namespace Day02
+namespace Day02
 {
     internal class GameRound
     {

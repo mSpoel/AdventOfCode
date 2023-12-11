@@ -1,4 +1,4 @@
-﻿namespace Day03
+namespace Day03
 {
     internal class GearCalculator
     {

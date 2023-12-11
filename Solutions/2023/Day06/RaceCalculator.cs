@@ -1,4 +1,4 @@
-﻿
+
 namespace Day06
 {
     internal class RaceCalculator
