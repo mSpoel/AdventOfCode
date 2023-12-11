@@ -9,7 +9,14 @@ namespace Day10
 
             var grid = new GridBuilder(lines).Build();
 
+            //WriteGridToConsole(grid.NumberOfRows, grid.NumberOfColumns, new HashSet<Coordinate>(), grid);
+            //Console.WriteLine();
+
             grid.Expand();
+
+
+            //WriteGridToConsole(grid.NumberOfRows, grid.NumberOfColumns, new HashSet<Coordinate>(), grid);
+            //Console.WriteLine();
 
             var startingPoint = grid.GetStartingPoint();
 
@@ -41,9 +48,12 @@ namespace Day10
             }
 
             //WriteGridToConsole(grid.NumberOfRows, grid.NumberOfColumns, coordinatesVisited, grid);
+            //Console.WriteLine();
 
             var array = ToArray(grid, coordinatesVisited);
 
+            //WriteArrayToConsole(array, new List<Coordinate>(), new List<int>());
+            //Console.WriteLine();
 
             var algorithm = new FloodFillAlgorithm();
 
@@ -61,9 +71,15 @@ namespace Day10
                         column = j;
 
                         algorithm.FloodFill(array, row, column, color++);
+
+                        //Console.WriteLine($"Color: {color}");
+                        //WriteArrayToConsole(array, new List<Coordinate>(), new List<int>(), true);
+                        //Console.WriteLine();
                     }
                 }
             }
+
+            WriteArrayToConsole(array, new List<Coordinate>(), new List<int>());
 
             List<int> colorsOnEdge = new List<int>();
             for (int i = 0; i < grid.NumberOfRows; i++)
@@ -175,7 +191,7 @@ namespace Day10
             return array;
         }
 
-        private static void WriteArrayToConsole(int[][] array, List<Coordinate> coordinates, List<int> colorsOnEdge)
+        private static void WriteArrayToConsole(int[][] array, List<Coordinate> coordinates, List<int> colorsOnEdge, bool showColor = false)
         {
             ConsoleColor foregroundColor = Console.ForegroundColor;
             for (int row = 0; row < array.Length; row++)
@@ -209,6 +225,12 @@ namespace Day10
                     if (coordinates.Contains(coordinate))
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
+                    }
+
+                    if (showColor)
+                    {
+                        Console.Write(array[row][column]);
+                        continue;
                     }
 
                     if (array[row][column] > 1)

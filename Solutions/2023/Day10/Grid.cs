@@ -84,6 +84,12 @@ namespace Day10
 
             var item = _grid[next];
 
+            if (_grid[next].Symbol.Equals('S') &&
+                _grid[current].Directions.Contains(direction))
+            {
+                return true;
+            }
+
             Direction oppositeDirection;
             if (direction == Direction.East)
             {
@@ -145,6 +151,46 @@ namespace Day10
             }
 
             _grid = expandedGrid;
+            NumberOfColumns = _grid.Keys.Max(x => x.Column) + 1;
+            NumberOfRows = _grid.Keys.Max(x => x.Row) + 1;
+
+            var expandedGrid2 = new Dictionary<Coordinate, GridItem>();
+
+            for (int column = 0; column < NumberOfColumns; column++)
+            {
+                int newRowFirst = 0;
+                int newRowExpanded = 1;
+                for (int row = 0; row < NumberOfRows; row++)
+                {
+                    if (row == NumberOfRows - 1)
+                    {
+                        expandedGrid2.Add(new Coordinate(newRowFirst, column), _grid[new Coordinate(row, column)]);
+                        continue;
+                    }
+
+                    var currentCoordinate = new Coordinate(row, column);
+                    var nextCoordinate = new Coordinate(row + 1, column);
+                    var item = _grid[currentCoordinate];
+
+                    expandedGrid2.Add(new Coordinate(newRowFirst, column, IsExpanded(row, column)), item);
+
+                    if (IsConnected(currentCoordinate, nextCoordinate, Direction.South))
+                    {
+                        var gridItem = gridItems.GetItem('|');
+                        expandedGrid2.Add(new Coordinate(newRowExpanded, column, true), gridItem);
+                    }
+                    else
+                    {
+                        var gridItem = gridItems.GetItem('.');
+                        expandedGrid2.Add(new Coordinate(newRowExpanded, column, true), gridItem);
+                    }
+
+                    newRowFirst += 2;
+                    newRowExpanded += 2;
+                }
+            }
+
+            _grid = expandedGrid2;
             NumberOfColumns = _grid.Keys.Max(x => x.Column) + 1;
             NumberOfRows = _grid.Keys.Max(x => x.Row) + 1;
         }
