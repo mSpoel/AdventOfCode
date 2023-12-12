@@ -18,16 +18,6 @@
                 Interlocked.Add(ref result, combinations);
             });
 
-            //foreach (var line in lines)
-            //{
-            //    var unfoldedLine = Unfold(line);
-            //    var springRow = new SpringRow(unfoldedLine);
-            //    var combinations = springRow.GetNumberOfCombinations();
-            //    Console.WriteLine($"{unfoldedLine} : Combinations: {combinations}");
-
-            //    result += combinations;
-            //}
-
             return result;
         }
 
@@ -37,11 +27,7 @@
             string groups = line.Split(" ")[1];
 
             return
-                string.Concat(Enumerable.Repeat(pattern + '?', 4))
-                + pattern
-                + " "
-                + string.Concat(Enumerable.Repeat(groups + ',', 4))
-                + groups;
+                $"{string.Join('?', Enumerable.Repeat(pattern, 5))} {string.Join(',', Enumerable.Repeat(groups, 5))}";
         }
     }
 }

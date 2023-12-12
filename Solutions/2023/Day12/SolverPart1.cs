@@ -8,14 +8,14 @@ namespace Day12
 
             long result = 0;
 
-            foreach (var line in lines)
+            Parallel.ForEach(lines, line =>
             {
                 var springRow = new SpringRow(line);
                 var combinations = springRow.GetNumberOfCombinations();
                 Console.WriteLine($"{line} : Combinations: {combinations}");
 
-                result += combinations;
-            }
+                Interlocked.Add(ref result, combinations);
+            });
 
             return result;
         }
