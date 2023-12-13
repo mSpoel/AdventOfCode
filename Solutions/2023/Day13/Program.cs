@@ -3,7 +3,7 @@ using Day13;
 
 var watch = Stopwatch.StartNew();
 
-var solver = new SolverPart2();
+var solver = new SolverPart1();
 
 //Console.WriteLine($"Solution: {solver.GetSolution("example.txt")}");
 Console.WriteLine($"Solution: {solver.GetSolution("input.txt")}");

@@ -15,41 +15,8 @@
                 var line = lines[i];
                 if (line.Length < 1 || i == lines.Length - 1)
                 {
-                    bool stop = false;
-
-                    for (int row = 0; row < patternBuilder.NumberOfRows; row++)
-                    {
-                        if (stop)
-                        {
-                            break;
-                        }
-
-                        var originalPattern = patternBuilder.Build();
-                        var originalReflectionNumber = originalPattern.GetReflectionNumber();
-                        var originalRows = originalPattern.GetReflectionRows();
-                        var originalColumns = originalPattern.GetReflectionColumns();
-
-                        Console.WriteLine($"Original reflection number {originalReflectionNumber} at row {row}.");
-
-                        for (int column = 0; column < patternBuilder.NumberOfColumns; column++)
-                        {
-                            patternBuilder.Replace(row, column);
-                            patternBuilder.Ignore(originalRows, originalColumns);
-                            var pattern = patternBuilder.Build();
-
-                            var reflectionNumber = pattern.GetReflectionNumber();
-                            var rows = pattern.GetReflectionRows();
-                            var columns = pattern.GetReflectionColumns();
-
-                            if (reflectionNumber > 0)
-                            {
-                                Console.WriteLine($"Found reflection number {reflectionNumber} at replaced row {row} and column {column}.");
-                                result += reflectionNumber;
-                                stop = true;
-                                break;
-                            }
-                        }
-                    }
+                    var pattern = patternBuilder.Build();
+                    result += pattern.GetReflectionNumber(1);
 
                     patternBuilder = new PatternBuilder();
                     continue;

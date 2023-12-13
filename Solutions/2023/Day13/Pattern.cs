@@ -1,19 +1,17 @@
 ﻿
+
+
+
 namespace Day13
 {
     public class Pattern
     {
         private char[][] _pattern;
-        private readonly List<int> _rowsToIgnore;
-        private readonly List<int> _columnsToIgnore;
-        private List<int> _reflectionRows = [];
-        private List<int> _reflectionColumns = [];
 
-        public Pattern(char[][] pattern, List<int> rowsToIgnore, List<int> columnsToIgnore)
+
+        public Pattern(char[][] pattern)
         {
             _pattern = pattern;
-            _rowsToIgnore = rowsToIgnore;
-            _columnsToIgnore = columnsToIgnore;
         }
 
         internal int GetReflectionNumber()
@@ -23,14 +21,25 @@ namespace Day13
             return GetReflectionNumber(_pattern) + 100 * GetReflectionNumber(Transpose(_pattern), true);
         }
 
-        internal List<int> GetReflectionRows()
+        internal int GetReflectionNumber(int allowedDifference)
         {
-            return _reflectionRows;
+            WriteToConsole();
+
+            return GetReflectionNumber(_pattern, allowedDifference) + 100 * GetReflectionNumber(Transpose(_pattern), allowedDifference, true);
         }
 
-        internal List<int> GetReflectionColumns()
+        internal void WriteToConsole()
         {
-            return _reflectionColumns;
+            for (int i = 0; i < _pattern.Length; i++)
+            {
+                for (int j = 0; j < _pattern[0].Length; j++)
+                {
+                    Console.Write(_pattern[i][j]);
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine();
         }
 
         private int GetReflectionNumber(char[][] array, bool isTranspose = false)
@@ -53,41 +62,58 @@ namespace Day13
                 if (isReflection)
                 {
                     // If we reach this point, all rows are reflections at position i.
-
-                    if (isTranspose)
-                    {
-                        if (!_columnsToIgnore.Contains(i))
-                        {
-                            result += i + 1;
-                            _reflectionColumns.Add(i);
-                        }
-                    }
-                    else
-                    {
-                        if (!_rowsToIgnore.Contains(i))
-                        {
-                            result += i + 1;
-                            _reflectionRows.Add(i);
-                        }
-                    }
+                    result += i + 1;
                 }
             }
 
             return result;
         }
 
-        public void WriteToConsole()
+        private int GetReflectionNumber(char[][] array, int allowedDifference, bool isTranspose = false)
         {
-            for (int i = 0; i < _pattern.Length; i++)
+            // First loop over the columns with i. Then check for each row it is a reflection at position i.
+            var result = 0;
+
+            for (int i = 0; i < array[0].Length; i++)
             {
-                for (int j = 0; j < _pattern[0].Length; j++)
+                var numberOfDifferences = 0;
+
+                for (int j = 0; j < array.Length; j++)
                 {
-                    Console.Write(_pattern[i][j]);
+
+
+                    numberOfDifferences += GetDifferences(array[j], i);
+
+                    if (numberOfDifferences > allowedDifference)
+                    {
+                        break;
+                    }
                 }
-                Console.WriteLine();
+
+                if (numberOfDifferences == allowedDifference)
+                {
+                    return i + 1;
+                }
             }
 
-            Console.WriteLine();
+            return result;
+        }
+
+        private int GetDifferences(char[] line, int i)
+        {
+            int differences = 0;
+
+            int steps = 0;
+            while (i - steps > -1 && i + 1 + steps < line.Length)
+            {
+                if (line[i - steps] != line[i + 1 + steps])
+                {
+                    differences++;
+                }
+                steps++;
+            }
+
+            return differences;
         }
 
         private static bool IsReflection(char[] line, int i)

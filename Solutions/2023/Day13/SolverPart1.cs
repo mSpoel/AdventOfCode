@@ -18,9 +18,6 @@ namespace Day13
                     var pattern = patternBuilder.Build();
                     result += pattern.GetReflectionNumber();
 
-                    var rows = pattern.GetReflectionRows();
-                    var columns = pattern.GetReflectionColumns();
-
                     patternBuilder = new PatternBuilder();
                     continue;
                 }
