@@ -6,6 +6,11 @@ namespace Day14
     {
         private char[][] _grid;
 
+        private int NumberOfRows(char[][] grid) => grid.Length;
+
+        private int NumberOfColumns(char[][] grid) => grid[0].Length;
+
+
         public Grid(char[][] grid)
         {
             _grid = grid;
@@ -13,115 +18,100 @@ namespace Day14
 
         public int GetWeigth(int numberOfCycles)
         {
-            // Each cycle spins the grid. First north, then west, then south, then east.
+            var grid = Iterate(numberOfCycles);
 
-            for (int i = 0; i < numberOfCycles; i++)
-            {
-                _grid = GetNextGrid(_grid);
-            }
-
-            return 0;
+            return GetWeight(grid);
         }
 
-        private char[][] GetNextGrid(char[][] grid)
+        private char[][] Iterate(int numberOfCycles)
         {
-            Console.WriteLine("start");
-            WriteToConsole(grid);
+            // Each cycle spins the grid. First north, then west, then south, then east.
+            var history = new List<string>();
 
-            grid = MoveNorth(grid);
-            Console.WriteLine("north");
-            WriteToConsole(grid);
+            while (numberOfCycles > 0)
+            {
+                _grid = Cycle(_grid);
+                numberOfCycles--;
 
-            grid = MoveWest(grid);
-            Console.WriteLine("west");
-            WriteToConsole(grid);
+                var mapAsString = string.Join("\n", _grid.Select(line => new string(line)));
+                var index = history.IndexOf(mapAsString);
+                if (index < 0)
+                {
+                    history.Add(mapAsString);
+                }
+                else
+                {
+                    var loopLength = history.Count - history.IndexOf(mapAsString);
+                    var remainingCycles = numberOfCycles % loopLength;
 
-            grid = MoveSouth(grid);
-            Console.WriteLine("south");
-            WriteToConsole(grid);
+                    var result = history[index + remainingCycles];
+                    return result.Split('\n').Select(line => line.ToCharArray()).ToArray();
+                }
+            }
 
-            grid = MoveEast(grid);
-            Console.WriteLine("east");
-            WriteToConsole(grid);
+            return _grid;
+        }
+
+        private char[][] Cycle(char[][] grid)
+        {
+            //Console.WriteLine("Start cycle");
+            //WriteToConsole(grid);
+
+            for (int i = 0; i < 4; i++)
+            {
+                grid = Rotate(TiltToNorth(grid));
+            }
+
+            //Console.WriteLine("End cycle");
+            //WriteToConsole(grid);
 
             return grid;
         }
 
-        private char[][] MoveEast(char[][] grid)
+        private char[][] TiltToNorth(char[][] grid)
         {
-            throw new NotImplementedException();
-        }
-
-        private char[][] MoveSouth(char[][] grid)
-        {
-            throw new NotImplementedException();
-        }
-
-        private char[][] MoveWest(char[][] grid)
-        {
-            throw new NotImplementedException();
-        }
-
-        private char[][] MoveNorth(char[][] grid)
-        {
-            var transposed = Transpose(grid);
-
-            var newGrid = new char[grid.Length][];
-
-            int rowIndex = 0;
-            foreach (var row in transposed)
+            for (int column = 0; column < NumberOfColumns(grid); column++)
             {
-                var newRow = new char[grid.Length];
-                string rowAsStringrow = string.Join("", row);
-                var sections = rowAsStringrow.Split('#');
-
-                int index = 0;
-                foreach (var section in sections)
+                int rowNext0 = 0;
+                for (int row = 0; row < NumberOfRows(grid); row++)
                 {
-                    //Something wrong with placing the #
-                    if (section.Length == 0)
+                    if (grid[row][column] == '#')
                     {
-                        newRow[index] = '#';
-                        index++;
+                        rowNext0 = row + 1;
                     }
-                    else if (section.Contains('O'))
+                    else if (grid[row][column] == 'O')
                     {
-                        var numberOfO = section.Count(c => c == 'O');
-                        while (numberOfO > 0)
-                        {
-                            newRow[index] = 'O';
-                            index++;
-                            numberOfO--;
-                        }
-
-                        var numberOfDots = section.Count(c => c == '.');
-                        while (numberOfDots > 0)
-                        {
-                            newRow[index] = '.';
-                            index++;
-                            numberOfDots--;
-                        }
-                    }
-                    else
-                    {
-                        foreach (var c in section)
-                        {
-                            newRow[index] = c;
-                            index++;
-                        }
+                        grid[row][column] = '.';
+                        grid[rowNext0][column] = 'O';
+                        rowNext0++;
                     }
                 }
-
-                newGrid[rowIndex] = newRow;
-                rowIndex++;
             }
 
-            return Transpose(newGrid);
+            return grid;
+        }
+
+        private char[][] Rotate(char[][] grid)
+        {
+            //rotate the grid 90 degrees clockwise
+            var result = new char[NumberOfRows(grid)][];
+
+            for (int row = 0; row < NumberOfColumns(grid); row++)
+            {
+                result[row] = new char[NumberOfColumns(grid)];
+                for (int column = 0; column < NumberOfRows(grid); column++)
+                {
+                    result[row][column] = grid[NumberOfRows(grid) - column - 1][row];
+                }
+            }
+
+            return result;
         }
 
         public int GetWeightToNorth()
         {
             var transposedGrid = Transpose(_grid);
+
             int result = 0;
 
             foreach (var row in transposedGrid)
@@ -156,6 +146,22 @@ namespace Day14
                         weight = weight - section.Length - 1;
                     }
                 }
+            }
+
+            return result;
+        }
+
+        private int GetWeight(char[][] array)
+        {
+            int result = 0;
+
+            int weight = NumberOfRows(array);
+
+            foreach (var row in array)
+            {
+                var numberOfO = row.Count(c => c == 'O');
+                result += numberOfO * weight;
+                weight--;
             }
 
             return result;

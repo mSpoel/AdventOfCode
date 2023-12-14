@@ -14,7 +14,7 @@
 
             var grid = gridBuilder.Build();
 
-            return grid.GetWeigth(1);
+            return grid.GetWeigth(1000000000);
         }
     }
 }
