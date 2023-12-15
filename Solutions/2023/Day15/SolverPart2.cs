@@ -1,27 +1,26 @@
-namespace Day15
+﻿namespace Day15
 {
-    internal class SolverPart1
+    internal class SolverPart2
     {
         internal int GetSolution(string inputPath)
         {
             string[] lines = File.ReadAllLines(inputPath);
 
-            int result = 0;
-
             foreach (var line in lines)
             {
                 var parts = line.Split(',');
 
+                var boxCollection = new BoxCollection();
+
                 foreach (var part in parts)
                 {
-                    var hash = part.CalculateHash();
-                    result += hash;
-
-                    Console.WriteLine($"'{part}' hash is {hash}");
+                    boxCollection.Process(part);
                 }
+
+                return boxCollection.Calculate();
             }
 
-            return result;
+            return 0;
         }
     }
 }
