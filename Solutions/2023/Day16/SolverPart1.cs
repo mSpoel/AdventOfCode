@@ -17,7 +17,7 @@ namespace Day16
             var grid = gridBuilder.Build();
             var beamTracer = new BeamTracer(grid);
 
-            return beamTracer.NumberOfPointsAffectedByBeam(0, 0, Direction.Right);
+            return beamTracer.NumberOfPointsAffectedByBeam(0, 0, [Direction.Right]);
         }
     }
 }

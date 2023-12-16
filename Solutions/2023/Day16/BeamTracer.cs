@@ -5,31 +5,39 @@ namespace Day16
     internal class BeamTracer
     {
         private readonly Grid _grid;
+        private readonly bool _showLog;
 
-        public BeamTracer(Grid grid)
+        public BeamTracer(Grid grid, bool showLog = false)
         {
             _grid = grid;
+            _showLog = showLog;
         }
 
-        public int NumberOfPointsAffectedByBeam(int startRow, int startColumn, Direction direction)
+        public int NumberOfPointsAffectedByBeam(int startRow, int startColumn, List<Direction> startDirections)
         {
-            var nextDirections = GetNextDirections(_grid.Get(startRow, startColumn), direction);
 
-            _grid.WriteToConsole(new List<(int, int)> { (startRow, startColumn) });
-            Console.WriteLine();
+            if (_showLog)
+            {
+                Console.WriteLine($"start: ({startRow}, {startColumn})");
+                Console.WriteLine();
+            }
 
             var affectedGrid = _grid.Clone();
+            affectedGrid.Set(startRow, startColumn, '#');
 
             List<Beam> beams = new();
             List<Beam> processedBeams = new();
 
-            foreach (var nextDirection in nextDirections)
+            foreach (var startDirection in startDirections)
             {
-                beams.Add(new Beam(startRow, startColumn, nextDirection));
-                affectedGrid.Set(startRow, startColumn, '#');
+                var nextDirections = GetNextDirections(_grid.Get(startRow, startColumn), startDirection);
+                foreach (var nextDirection in nextDirections)
+                {
+                    beams.Add(new Beam(startRow, startColumn, nextDirection));
+                }
             }
 
-            while (beams.Any())
+            while (beams.Count != 0)
             {
                 List<Beam> newBeams = [];
 
@@ -63,18 +71,25 @@ namespace Day16
                 beams.Clear();
                 beams.AddRange(newBeams);
 
-                //Console.Clear();
 
-                //affectedGrid.WriteToConsole(beams.Select(b => (b.CurrentRow, b.CurrentColumn)).ToList());
-                //Console.WriteLine($"beams: {beams.Count}");
-                //foreach (var beam in beams)
-                //{
-                //    Console.WriteLine($"({beam.CurrentRow}, {beam.CurrentColumn}) {beam.Direction}");
-                //}
-                //Console.WriteLine("");
+                //Console.Clear();
+                if (_showLog)
+                {
+                    affectedGrid.WriteToConsole(beams.Select(b => (b.CurrentRow, b.CurrentColumn)).ToList());
+                    Console.WriteLine($"beams: {beams.Count}");
+                    foreach (var beam in beams)
+                    {
+                        Console.WriteLine($"({beam.CurrentRow}, {beam.CurrentColumn}) {beam.Direction}");
+                    }
+                    Console.WriteLine("");
+                }
             }
 
-            //affectedGrid.WriteToConsole();
+            if (_showLog)
+            {
+                Console.WriteLine("Final grid:");
+                affectedGrid.WriteToConsole();
+            }
 
             return affectedGrid.GetCount('#');
         }
