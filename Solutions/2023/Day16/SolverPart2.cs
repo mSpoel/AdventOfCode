@@ -1,5 +1,4 @@
-﻿using System.Collections.Concurrent;
-using Utilities;
+﻿using Utilities;
 
 namespace Day16
 {
@@ -17,7 +16,6 @@ namespace Day16
 
             var grid = gridBuilder.Build();
             var beamTracer = new BeamTracer(grid, false);
-
             Task<int> resultRightTask = Task.Run(() => GoRight(grid, beamTracer));
             Task<int> resultLeftTask = Task.Run(() => GoLeft(grid, beamTracer));
             Task<int> resultUpTask = Task.Run(() => GoUp(grid, beamTracer));
@@ -31,64 +29,61 @@ namespace Day16
             int resultDown = resultDownTask.Result;
 
             return Math.Max(Math.Max(resultRight, resultLeft), Math.Max(resultUp, resultDown));
+
         }
 
         private int GoUp(Grid grid, BeamTracer beamTracer)
         {
-            ConcurrentBag<int> results = [];
+            int result = 0;
             var row = grid.NumberOfRows - 1;
-            Parallel.For(0, grid.NumberOfRows, i =>
+            for (int i = 0; i < grid.NumberOfRows; i++)
             {
                 var temp = beamTracer.NumberOfPointsAffectedByBeam(row, i, [Direction.Up]);
-                results.Add(temp);
+                result = Math.Max(result, temp);
+                Console.WriteLine($"Row {row} column {i}: {temp} Result: {result}");
+            }
 
-                Console.WriteLine($"Row {row} column {i}: {temp}");
-            });
-
-            return results.Max();
+            return result;
         }
 
         private int GoDown(Grid grid, BeamTracer beamTracer)
         {
-            ConcurrentBag<int> results = [];
-            Parallel.For(0, grid.NumberOfColumns, i =>
+            int result = 0;
+            for (int i = 0; i < grid.NumberOfColumns; i++)
             {
                 var temp = beamTracer.NumberOfPointsAffectedByBeam(0, i, [Direction.Down]);
-                results.Add(temp);
-
-                Console.WriteLine($"Row 0 column {i}: {temp}");
-            });
-
-            return results.Max();
+                result = Math.Max(result, temp);
+                Console.WriteLine($"Row 0 column {i}: {temp} Result: {result}");
+            }
+            return result;
         }
 
         private int GoLeft(Grid grid, BeamTracer beamTracer)
         {
-            ConcurrentBag<int> results = [];
+            var result = 0;
             var column = grid.NumberOfColumns - 1;
-            Parallel.For(0, grid.NumberOfRows, i =>
+            for (int i = 0; i < grid.NumberOfRows; i++)
             {
                 var temp = beamTracer.NumberOfPointsAffectedByBeam(i, column, [Direction.Left]);
-                results.Add(temp);
+                result = Math.Max(result, temp);
+                Console.WriteLine($"Row {i} column {column}: {temp} Result: {result}");
+            }
 
-                Console.WriteLine($"Row {i} column {column}: {temp}");
-            });
-
-            return results.Max();
+            return result;
         }
 
         private static int GoRight(Grid grid, BeamTracer beamTracer)
         {
-            ConcurrentBag<int> results = [];
+            var result = 0;
 
-            Parallel.For(0, grid.NumberOfRows, i =>
+            for (int i = 0; i < grid.NumberOfRows; i++)
             {
                 var temp = beamTracer.NumberOfPointsAffectedByBeam(i, 0, [Direction.Right]);
-                results.Add(temp);
-                Console.WriteLine($"Row {i} column 0: {temp}");
-            });
+                result = Math.Max(result, temp);
+                Console.WriteLine($"Row {i} column 0: {temp}  Result: {result}");
+            }
 
-            return results.Max();
+            return result;
         }
     }
 }
