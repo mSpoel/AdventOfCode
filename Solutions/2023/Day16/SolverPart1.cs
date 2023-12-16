@@ -1,3 +1,5 @@
+using Utilities;
+
 namespace Day16
 {
     internal class SolverPart1
@@ -6,13 +8,16 @@ namespace Day16
         {
             string[] lines = File.ReadAllLines(inputPath);
 
-            int result = 0;
-
+            var gridBuilder = new GridBuilder();
             foreach (var line in lines)
             {
+                gridBuilder.Add(line);
             }
 
-            return result;
+            var grid = gridBuilder.Build();
+            var beamTracer = new BeamTracer(grid);
+
+            return beamTracer.NumberOfPointsAffectedByBeam(0, 0, Direction.Right);
         }
     }
 }
