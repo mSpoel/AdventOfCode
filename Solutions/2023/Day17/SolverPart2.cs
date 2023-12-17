@@ -1,8 +1,8 @@
-using Utilities;
+﻿using Utilities;
 
 namespace Day17
 {
-    internal class SolverPart1
+    internal class SolverPart2
     {
         internal int GetSolution(string inputPath)
         {
