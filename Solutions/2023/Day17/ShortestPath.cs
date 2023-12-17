@@ -76,58 +76,5 @@ namespace Day17
 
             return 0;
         }
-
-        public int GetShortestPath2((int row, int column) start, (int row, int column) end, Direction startDirection)
-        {
-            Dictionary<(Coordinate2D location, Direction direction, int runLength), int> distances = [];
-            Dictionary<(Coordinate2D location, Direction direction, int runLength), (Coordinate2D loc, Direction direction, int runLength)> previousState = [];
-
-            PriorityQueue<(Coordinate2D location, Direction direction, int runLength), int> queue = new();
-
-            distances[((start.row, start.column), startDirection, 0)] = 0;
-            queue.Enqueue(((start.row, start.column), startDirection, 0), 0);
-
-            while (queue.TryDequeue(out var current, out int cost))
-            {
-                Console.WriteLine($"Current: {current.location} {current.direction} {current.runLength} Cost: {cost}");
-
-                if (current.location == end)
-                {
-                    return cost;
-                }
-
-                foreach (Direction direction in Enum.GetValues(typeof(Direction)))
-                {
-                    if (direction == current.direction.Reverse())
-                    {
-                        continue; // Don't go back the way we came
-                    }
-
-                    if (direction == current.direction && current.runLength == 3)
-                    {
-                        continue; // We are not allowed to go straight for more than 3 steps
-                    }
-
-                    var nextLocation = current.location.Move(direction);
-
-                    if (!_map.ContainsKey(nextLocation))
-                    {
-                        continue; // We are not allowed to go outside the grid
-                    }
-
-                    var nextState = (nextLocation, direction, direction == current.direction ? current.runLength + 1 : 1);
-                    int nextDistance = distances[current] + _map[nextLocation];
-
-                    if (nextDistance < distances.GetValueOrDefault(nextState, int.MaxValue))
-                    {
-                        distances[nextState] = nextDistance;
-                        previousState[nextState] = current;
-                        queue.Enqueue(nextState, nextDistance);
-                    }
-                }
-            }
-
-            return 0;
-        }
     }
 }
