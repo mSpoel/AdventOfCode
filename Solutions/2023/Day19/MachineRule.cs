@@ -1,5 +1,4 @@
-﻿
-namespace Day19
+﻿namespace Day19
 {
     internal class MachineRule
     {
@@ -11,6 +10,7 @@ namespace Day19
             Name = _line.Split('{')[0];
             Expression = _line.Split('{')[1].Split('}')[0];
         }
+
 
         public string Name { get; internal set; }
 
@@ -27,6 +27,7 @@ namespace Day19
                     return expression;
                 }
 
+                // Check if it is X, M, A or S and update the range accordingly
                 if (EvaluateExpression(expression.Split(':')[0], parts))
                 {
                     return expression.Split(':')[1];
@@ -34,6 +35,41 @@ namespace Day19
             }
 
             return "R";
+        }
+
+        internal List<(string expression, string nextRule)> GetNextRules()
+        {
+            List<(string expression, string nextRule)> combinations = new List<(string expression, string nextRule)>();
+
+            var expressions = Expression.Split(',');
+
+            foreach (var expression in expressions)
+            {
+                if (!IsEvalutation(expression))
+                {
+                    combinations.Add((expression, expression));
+                    continue;
+                }
+
+                var nextRule = expression.Split(':')[1];
+
+                combinations.Add((expression, nextRule));
+            }
+
+            return combinations;
+        }
+
+        internal (string expression, string nextRule) GetRule(int position)
+        {
+            var expressions = Expression.Split(',');
+            var expression = expressions[position];
+
+            if (!IsEvalutation(expression))
+            {
+                return (expression, expression);
+            }
+
+            return (expression.Split(':')[0], expression.Split(':')[1]);
         }
 
         private bool EvaluateExpression(string expression, Parts parts)

@@ -12,6 +12,14 @@
             S = int.Parse(cleanLine.Split(',')[3][2..]);
         }
 
+        public Parts(int x, int m, int a, int s)
+        {
+            X = x;
+            M = m;
+            A = a;
+            S = s;
+        }
+
         public int X { get; }
 
         public int M { get; }
