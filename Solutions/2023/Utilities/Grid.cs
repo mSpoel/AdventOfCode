@@ -68,6 +68,51 @@
             return row >= 0 && row < NumberOfRows && column >= 0 && column < NumberOfColumns;
         }
 
+        public List<(int row, int column)> GetNodesWith(char c)
+        {
+            var result = new List<(int row, int rowcolumn)>();
+
+            for (int i = 0; i < _grid.Length; i++)
+            {
+                for (int j = 0; j < _grid[0].Length; j++)
+                {
+                    if (_grid[i][j] == c)
+                    {
+                        result.Add((i, j));
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public List<(int row, int column)> GetNeighbours(int row, int column)
+        {
+            var result = new List<(int row, int column)>();
+
+            if (IsInGrid(row - 1, column))
+            {
+                result.Add((row - 1, column));
+            }
+
+            if (IsInGrid(row + 1, column))
+            {
+                result.Add((row + 1, column));
+            }
+
+            if (IsInGrid(row, column - 1))
+            {
+                result.Add((row, column - 1));
+            }
+
+            if (IsInGrid(row, column + 1))
+            {
+                result.Add((row, column + 1));
+            }
+
+            return result;
+        }
+
         public void Set(int nextRow, int nextColumn, char c)
         {
             _grid[nextRow][nextColumn] = c;
