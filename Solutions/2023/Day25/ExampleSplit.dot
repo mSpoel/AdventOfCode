@@ -1,0 +1,36 @@
+graph {
+	subgraph "_%1_cc_0" {
+		jqt -- rhn;
+		jqt -- xhk;
+		jqt -- ntq;
+		rhn -- xhk;
+		bvb -- rhn;
+		bvb -- xhk;
+		bvb -- hfx;
+		bvb -- ntq;
+		hfx -- rhn;
+		hfx -- xhk;
+		hfx -- ntq;
+		ntq -- xhk;
+	}
+	subgraph "_%1_cc_1" {
+		lhk -- nvd;
+		lhk -- lsr;
+		nvd -- pzl;
+		nvd -- qnr;
+		frs -- lhk;
+		frs -- rsh;
+		frs -- lsr;
+		frs -- qnr;
+		rsh -- rzs;
+		pzl -- rsh;
+		lsr -- rsh;
+		lsr -- pzl;
+		lsr -- rzs;
+		qnr -- rzs;
+		cmg -- lhk;
+		cmg -- nvd;
+		cmg -- qnr;
+		cmg -- rzs;
+	}
+}
