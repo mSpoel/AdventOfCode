@@ -13,6 +13,7 @@ namespace Day19Tests
         [InlineData("x<10", 1, 120, 1, 9)]
         [InlineData("x<10", 9, 9, 9, 9)]
         [InlineData("x<10", 1, 4, 1, 4)]
+        [InlineData("s>2770", 1, 4000, 2771, 4000)]
         public void GetPassRanges(string expression, int start, int end, int expectedStart, int expectedEnd)
         {
             var ranges = Ranges.GetPassRanges(expression, new Range(start, end));
@@ -27,6 +28,7 @@ namespace Day19Tests
         [InlineData("x<10", 1, 120, 10, 120)]
         [InlineData("x<10", 11, 11, 11, 11)]
         [InlineData("x<10", 11, 14, 11, 14)]
+        [InlineData("s>2770", 1, 4000, 1, 2770)]
         public void GetFailRanges(string expression, int start, int end, int expectedStart, int expectedEnd)
         {
             var ranges = Ranges.GetFailRanges(expression, new Range(start, end));

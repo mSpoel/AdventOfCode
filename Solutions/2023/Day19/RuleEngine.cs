@@ -48,6 +48,7 @@
             Range rangeS = new(1, 4000);
 
             List<(Range X, Range M, Range A, Range S)> validCombinations = [];
+            List<(Range X, Range M, Range A, Range S)> rejectedCombinations = [];
 
             var queue = new Queue<(Range rangeX, Range rangeM, Range rangeA, Range rangeS, string nextRule, int step)>();
             queue.Enqueue((rangeX, rangeM, rangeA, rangeS, "in", 0));
@@ -66,6 +67,7 @@
 
                 if (nextRule == "R")
                 {
+                    rejectedCombinations.Add((X, M, A, S));
                     continue;
                 }
 
@@ -84,58 +86,58 @@
                 //update ranges
                 if (expression.StartsWith('x'))
                 {
-                    foreach (var newRangeX in Ranges.GetPassRanges(expression, rangeX))
+                    foreach (var passedX in Ranges.GetPassRanges(expression, X))
                     {
-                        queue.Enqueue((newRangeX, M, A, S, rule, 0));
+                        queue.Enqueue((passedX, M, A, S, rule, 0));
                         //Console.WriteLine($"Enqueue x:{newRangeX},m:{M},a:{A},s:{S} -> {rule} 0");
                     }
 
-                    foreach (var newRangeX in Ranges.GetFailRanges(expression, rangeX))
+                    foreach (var failedX in Ranges.GetFailRanges(expression, X))
                     {
-                        queue.Enqueue((newRangeX, M, A, S, nextRule, ++step));
+                        queue.Enqueue((failedX, M, A, S, nextRule, ++step));
                         //Console.WriteLine($"Enqueue x:{newRangeX},m:{M},a:{A},s:{S} -> {nextRule} {step}");
                     }
 
                 }
                 else if (expression.StartsWith('m'))
                 {
-                    foreach (var newRangeM in Ranges.GetPassRanges(expression, rangeM))
+                    foreach (var passedM in Ranges.GetPassRanges(expression, M))
                     {
-                        queue.Enqueue((X, newRangeM, A, S, rule, 0));
+                        queue.Enqueue((X, passedM, A, S, rule, 0));
                         //Console.WriteLine($"Enqueue x:{X},m:{newRangeM},a:{A},s:{S} -> {rule} 0");
                     }
 
-                    foreach (var newRangeM in Ranges.GetFailRanges(expression, rangeM))
+                    foreach (var failedM in Ranges.GetFailRanges(expression, M))
                     {
-                        queue.Enqueue((X, newRangeM, A, S, nextRule, ++step));
+                        queue.Enqueue((X, failedM, A, S, nextRule, ++step));
                         //Console.WriteLine($"Enqueue x:{X},m:{newRangeM},a:{A},s:{S} -> {nextRule} {step}");
                     }
                 }
                 else if (expression.StartsWith('a'))
                 {
-                    foreach (var newRangeA in Ranges.GetPassRanges(expression, rangeA))
+                    foreach (var passedA in Ranges.GetPassRanges(expression, A))
                     {
-                        queue.Enqueue((X, M, newRangeA, S, rule, 0));
+                        queue.Enqueue((X, M, passedA, S, rule, 0));
                         //Console.WriteLine($"Enqueue x:{X},m:{M},a:{newRangeA},s:{S} -> {rule} 0");
                     }
 
-                    foreach (var newRangA in Ranges.GetFailRanges(expression, rangeA))
+                    foreach (var failedA in Ranges.GetFailRanges(expression, A))
                     {
-                        queue.Enqueue((X, M, newRangA, S, nextRule, ++step));
+                        queue.Enqueue((X, M, failedA, S, nextRule, ++step));
                         //Console.WriteLine($"Enqueue x:{X},m:{M},a:{newRangA},s:{S} -> {nextRule} {step}");
                     }
                 }
                 else if (expression.StartsWith('s'))
                 {
-                    foreach (var newRangeS in Ranges.GetPassRanges(expression, rangeS))
+                    foreach (var passedS in Ranges.GetPassRanges(expression, S))
                     {
-                        queue.Enqueue((X, M, A, newRangeS, rule, 0));
+                        queue.Enqueue((X, M, A, passedS, rule, 0));
                         //Console.WriteLine($"Enqueue x:{X},m:{M},a:{A},s:{newRangeS} -> {rule} 0");
                     }
 
-                    foreach (var newRangeS in Ranges.GetFailRanges(expression, rangeS))
+                    foreach (var failedS in Ranges.GetFailRanges(expression, S))
                     {
-                        queue.Enqueue((X, M, A, newRangeS, nextRule, ++step));
+                        queue.Enqueue((X, M, A, failedS, nextRule, ++step));
                         //Console.WriteLine($"Enqueue x:{X},m:{M},a:{A},s:{newRangeS} -> {nextRule} {step}");
                     }
                 }
