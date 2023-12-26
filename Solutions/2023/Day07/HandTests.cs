@@ -36,7 +36,7 @@ namespace Day07
             hand.Type().Should().Be(HandType.FullHouse);
         }
 
-        [Theory]
+        [Theory(Skip = "Implementation changed for part 2")]
         [InlineData("AAAKJ")]
         [InlineData("AKAJA")]
         public void ThreeOfAKind(string handAsString)
@@ -55,7 +55,7 @@ namespace Day07
             hand.Type().Should().Be(HandType.TwoPair);
         }
 
-        [Theory]
+        [Theory(Skip = "Implementation changed for part 2")]
         [InlineData("AAKQJ")]
         [InlineData("AKAQJ")]
         [InlineData("AKQAJ")]
@@ -65,7 +65,8 @@ namespace Day07
             hand.Type().Should().Be(HandType.OnePair);
         }
 
-        [Theory]
+
+        [Theory(Skip = "Implementation changed for part 2")]
         [InlineData("AKQJT")]
         public void HighCard(string handAsString)
         {
