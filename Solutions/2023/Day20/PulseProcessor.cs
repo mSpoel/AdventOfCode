@@ -11,7 +11,7 @@ namespace Day20
             _modules = modules;
         }
 
-        internal (long lowPulses, long highPulses) PushButton(Pulse startPulse)
+        internal (long lowPulses, long highPulses) PushButton(Pulse startPulse, long count = 0)
         {
             var (lowPulses, highPulses) = (0L, 0L);
 
@@ -39,6 +39,17 @@ namespace Day20
                 var module = _modules[destination];
 
                 Pulse resultPulse = module.Process(pulse, source);
+
+                if (resultPulse == Pulse.High && module is Conjunction)
+                {
+                    module.SetCount(count);
+                }
+
+
+                if (resultPulse == Pulse.Rx)
+                {
+                    return (-1, -1);
+                }
 
                 if (resultPulse == Pulse.None)
                 {

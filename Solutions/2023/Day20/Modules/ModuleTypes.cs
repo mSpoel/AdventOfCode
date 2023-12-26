@@ -6,5 +6,6 @@
         internal const string Conjunction = "&";
         internal const string FlipFlop = "%";
         internal const string OutPut = "output";
+        internal const string Rx = "rx";
     }
 }
