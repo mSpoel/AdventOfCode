@@ -399,3 +399,7 @@ FodyWeavers.xsd
 
 # Data from AdventOfCode
 *.txt
+
+.aoc_tiles/*
+!.aoc_tiles/tiles/
+session.cookie

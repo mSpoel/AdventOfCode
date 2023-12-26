@@ -7,3 +7,6 @@ Data is stored in a private repository and can be loaded via
 * git clone <URL to solutions repo>
 * git submodule init
 * git submodule update
+
+<!-- AOC TILES BEGIN -->
+<!-- AOC TILES END --> 
