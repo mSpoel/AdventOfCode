@@ -2,15 +2,15 @@
 {
     public class Vector
     {
-        public Vector(float x, float y, float z)
+        public Vector(double x, double y, double z)
         {
             X = x;
             Y = y;
             Z = z;
         }
 
-        public float X { get; }
-        public float Y { get; }
-        public float Z { get; }
+        public double X { get; }
+        public double Y { get; }
+        public double Z { get; }
     }
 }
