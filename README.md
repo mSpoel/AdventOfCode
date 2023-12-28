@@ -10,7 +10,7 @@ Data is stored in a private repository and can be loaded via
 
 <!-- AOC TILES BEGIN -->
 <h1 align="center">
-  2023 - 47 ⭐
+  2023 - 50 ⭐
 </h1>
 <a href="ProjectTemplate/SolverPart1.cs">
   <img src=".aoc_tiles/tiles/2023/01.png" width="161px">
