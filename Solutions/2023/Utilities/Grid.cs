@@ -28,6 +28,11 @@
             return new Grid(result);
         }
 
+        public char Get((int row, int column) point)
+        {
+            return Get(point.row, point.column);
+        }
+
         public char Get(int row, int column)
         {
             return _grid[row][column];
@@ -51,6 +56,11 @@
             return result;
         }
 
+        public (int row, int column) GetNextPoint((int row, int column) point, Direction direction)
+        {
+            return GetNextPoint(point.row, point.column, direction);
+        }
+
         public (int row, int column) GetNextPoint(int row, int column, Direction direction)
         {
             return direction switch
@@ -61,6 +71,11 @@
                 Direction.Right => (row, column + 1),
                 _ => throw new Exception("Unknown direction"),
             };
+        }
+
+        public bool IsInGrid((int row, int column) point)
+        {
+            return IsInGrid(point.row, point.column);
         }
 
         public bool IsInGrid(int row, int column)
@@ -111,6 +126,11 @@
             }
 
             return result;
+        }
+
+        public void Set((int row, int column) point, char c)
+        {
+            Set(point.row, point.column, c);
         }
 
         public void Set(int nextRow, int nextColumn, char c)
