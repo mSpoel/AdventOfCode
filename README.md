@@ -10,7 +10,7 @@ Data is stored in a private repository and can be loaded via
 
 <!-- AOC TILES BEGIN -->
 <h1 align="center">
-  2022 - 6 ⭐
+  2022 - 8 ⭐
 </h1>
 <a href="ProjectTemplate/SolverPart1.cs">
   <img src=".aoc_tiles/tiles/2022/01.png" width="161px">
@@ -20,6 +20,9 @@ Data is stored in a private repository and can be loaded via
 </a>
 <a href="Solutions/2022/Day03/CharCalculator.cs">
   <img src=".aoc_tiles/tiles/2022/03.png" width="161px">
+</a>
+<a href="Solutions/2022/Day04/Program.cs">
+  <img src=".aoc_tiles/tiles/2022/04.png" width="161px">
 </a>
 <!-- AOC TILES END --> 
 
