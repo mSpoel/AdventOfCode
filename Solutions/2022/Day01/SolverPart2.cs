@@ -2,13 +2,13 @@
 {
     internal class SolverPart2
     {
-        internal int GetSolution(string inputPath)
+        internal static int GetSolution(string inputPath)
         {
             string[] lines = File.ReadAllLines(inputPath);
 
             int count = 0;
 
-            List<int> calories = new List<int>();
+            List<int> calories = [];
             foreach (var line in lines)
             {
                 if (line == string.Empty)

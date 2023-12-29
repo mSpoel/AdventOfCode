@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using Day02;
+using Day03;
 
 var watch = Stopwatch.StartNew();
 

@@ -1,10 +1,8 @@
-﻿
-
-namespace Day02
+﻿namespace Day02
 {
     internal class RockPaperScissorsEngine
     {
-        private Dictionary<char, Choice> _choices = new()
+        private readonly Dictionary<char, Choice> _choices = new()
         {
             { 'A', Choice.Rock },
             { 'B', Choice.Paper },
@@ -14,21 +12,21 @@ namespace Day02
             { 'Z', Choice.Scissors}
         };
 
-        private Dictionary<Choice, int> _scores = new()
+        private readonly Dictionary<Choice, int> _scores = new()
         {
             { Choice.Rock, 1 },
             { Choice.Paper, 2 },
             { Choice.Scissors, 3 }
         };
 
-        private Dictionary<GameResult, int> _results = new()
+        private readonly Dictionary<GameResult, int> _results = new()
         {
             { GameResult.Win, 6 },
             { GameResult.Loss, 0 },
             { GameResult.Draw, 3 }
         };
 
-        private Dictionary<char, GameResult> _gameResults = new()
+        private readonly Dictionary<char, GameResult> _gameResults = new()
         {
             { 'X', GameResult.Loss },
             { 'Y', GameResult.Draw },
@@ -59,7 +57,7 @@ namespace Day02
             return _results[gameResult] + _scores[myChoice];
         }
 
-        private Choice DetermineMyChoice(Choice opponentChoice, GameResult gameResult)
+        private static Choice DetermineMyChoice(Choice opponentChoice, GameResult gameResult)
         {
             if (gameResult == GameResult.Draw)
             {

@@ -2,7 +2,7 @@ namespace Day01
 {
     internal class SolverPart1
     {
-        internal int GetSolution(string inputPath)
+        internal static int GetSolution(string inputPath)
         {
             string[] lines = File.ReadAllLines(inputPath);
 
