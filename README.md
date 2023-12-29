@@ -10,10 +10,13 @@ Data is stored in a private repository and can be loaded via
 
 <!-- AOC TILES BEGIN -->
 <h1 align="center">
-  2022 - 2 ⭐
+  2022 - 4 ⭐
 </h1>
 <a href="ProjectTemplate/SolverPart1.cs">
   <img src=".aoc_tiles/tiles/2022/01.png" width="161px">
+</a>
+<a href="ProjectTemplate/SolverPart2.cs">
+  <img src=".aoc_tiles/tiles/2022/02.png" width="161px">
 </a>
 <!-- AOC TILES END --> 
 

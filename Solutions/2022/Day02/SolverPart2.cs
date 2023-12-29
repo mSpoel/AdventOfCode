@@ -8,8 +8,13 @@ namespace Day02
 
             int result = 0;
 
+            var rockPaperScissorsEngine = new RockPaperScissorsEngine();
+
             foreach (var line in lines)
             {
+                int score = rockPaperScissorsEngine.GetScorePart2(line);
+
+                result += score;
             }
 
             return result;
