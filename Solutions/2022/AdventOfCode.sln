@@ -3,23 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day01", "Day01\Day01.csproj", "{0C05F8C8-E969-4BE2-968A-2E775CC93933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day01", "Day01\Day01.csproj", "{0C05F8C8-E969-4BE2-968A-2E775CC93933}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day02", "Day02\Day02.csproj", "{4AB2F115-34A3-4107-8581-7C0013DB8F32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day02", "Day02\Day02.csproj", "{4AB2F115-34A3-4107-8581-7C0013DB8F32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day03", "Day03\Day03.csproj", "{5010A842-D566-41AC-A69D-C315A6AF4CA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day03", "Day03\Day03.csproj", "{5010A842-D566-41AC-A69D-C315A6AF4CA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day04", "Day04\Day04.csproj", "{411668F1-13E8-4940-9B74-FDE021B4EDF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day04", "Day04\Day04.csproj", "{411668F1-13E8-4940-9B74-FDE021B4EDF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day05", "Day05\Day05.csproj", "{297F210E-8C2B-4800-84EF-D1AFF298C32F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day05", "Day05\Day05.csproj", "{297F210E-8C2B-4800-84EF-D1AFF298C32F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day06", "Day06\Day06.csproj", "{478F9628-AF90-4A67-BB57-3458755CCDED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D07A34D7-3CB5-42CF-B3DE-02B7EDC98E95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoC2022Tests", "AoC2022Tests\AoC2022Tests.csproj", "{9600D51B-C055-4A18-AAAD-8093301B1869}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0C05F8C8-E969-4BE2-968A-2E775CC93933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +45,19 @@ Global
 		{297F210E-8C2B-4800-84EF-D1AFF298C32F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{297F210E-8C2B-4800-84EF-D1AFF298C32F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{297F210E-8C2B-4800-84EF-D1AFF298C32F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{478F9628-AF90-4A67-BB57-3458755CCDED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{478F9628-AF90-4A67-BB57-3458755CCDED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{478F9628-AF90-4A67-BB57-3458755CCDED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{478F9628-AF90-4A67-BB57-3458755CCDED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9600D51B-C055-4A18-AAAD-8093301B1869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9600D51B-C055-4A18-AAAD-8093301B1869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9600D51B-C055-4A18-AAAD-8093301B1869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9600D51B-C055-4A18-AAAD-8093301B1869}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9600D51B-C055-4A18-AAAD-8093301B1869} = {D07A34D7-3CB5-42CF-B3DE-02B7EDC98E95}
 	EndGlobalSection
 EndGlobal
