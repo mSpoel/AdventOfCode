@@ -1,3 +1,4 @@
+print('2021 - Day02 - Part 2')
 file= open("../../../Data/2021/Day01/input.txt", "r")
 
 current = 0

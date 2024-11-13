@@ -1,4 +1,5 @@
-file= open("../../../Data/2021/Day01/input.txt", "r")
+print('2021 - Day01 - Part 1')
+file= open("../../../Data/2021/Day01/input_part1.txt", "r")
 
 current = 0
 numberOfIncreases = -1 #first line doesnt count as increase
