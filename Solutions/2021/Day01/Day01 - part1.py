@@ -17,4 +17,3 @@ for line in file:
 
 print('Number of increases: ', numberOfIncreases)
 print('Number of decreases: ', numberOfDecreases)
-		
