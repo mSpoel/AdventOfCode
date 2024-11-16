@@ -11,6 +11,6 @@ repos:
             # Simply remove the comments (#) below for args and the flags you want.
             args:
                  - --overwrite-year=2021
-            #     - --auto-add-tiles-to-git=amend
+                 - --auto-add-tiles-to-git=amend
             #     - --language-sorting=jl,kt,py,rs
-            #     - --exclude-patterns="2021/*/*.apl,2021/*/*.py,2021/*/*.cpp"
+                 - --exclude-patterns="2022/*/*.cs, 2023/*/*.cs
