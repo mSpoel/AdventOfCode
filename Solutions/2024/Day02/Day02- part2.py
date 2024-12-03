@@ -2,12 +2,12 @@ print('2022 - Day02 - Part 1')
 file = open("/workspaces/AdventOfCode/Solutions/2024/Day02/input.txt", "r")
 numberOfSafe = 0
 for line in file:
-    print(line)
     numbers = list(map(int, line.split()))
 
-    removeItem = 0
+    removeItem = -1
     
     def is_safe(numbers):
+        print(numbers)
         safe = True
 
         for i in range(len(numbers) - 1):
