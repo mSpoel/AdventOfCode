@@ -9,7 +9,7 @@ Data is stored in a private repository and can be loaded via
 
 <!-- AOC TILES BEGIN -->
 <h1 align="center">
-  2024 - 50 ⭐ - Smalltalk
+  2024 - 8 ⭐ - Smalltalk
 </h1>
 <a href="ProjectTemplate/SolverPart1.cs">
   <img src=".aoc_tiles/tiles/2024/01.png" width="161px">
@@ -22,69 +22,6 @@ Data is stored in a private repository and can be loaded via
 </a>
 <a href="Solutions/2022/Day04/Program.cs">
   <img src=".aoc_tiles/tiles/2024/04.png" width="161px">
-</a>
-<a href="Solutions/2022/Day05/InputReader.cs">
-  <img src=".aoc_tiles/tiles/2024/05.png" width="161px">
-</a>
-<a href="Solutions/2022/AoC2022Tests/Day06Tests.cs">
-  <img src=".aoc_tiles/tiles/2024/06.png" width="161px">
-</a>
-<a href="Solutions/2022/Day07/Directory.cs">
-  <img src=".aoc_tiles/tiles/2024/07.png" width="161px">
-</a>
-<a href="Solutions/2022/Day08/InputReader.cs">
-  <img src=".aoc_tiles/tiles/2024/08.png" width="161px">
-</a>
-<a href="Solutions/2023/Day09/HistoryRecord.cs">
-  <img src=".aoc_tiles/tiles/2024/09.png" width="161px">
-</a>
-<a href="Solutions/2023/Day10/Coordinate.cs">
-  <img src=".aoc_tiles/tiles/2024/10.png" width="161px">
-</a>
-<a href="Solutions/2023/Day11/Coordinate.cs">
-  <img src=".aoc_tiles/tiles/2024/11.png" width="161px">
-</a>
-<a href="Solutions/2023/Day12/Program.cs">
-  <img src=".aoc_tiles/tiles/2024/12.png" width="161px">
-</a>
-<a href="Solutions/2023/Day13/Pattern.cs">
-  <img src=".aoc_tiles/tiles/2024/13.png" width="161px">
-</a>
-<a href="Solutions/2023/Day14/Grid.cs">
-  <img src=".aoc_tiles/tiles/2024/14.png" width="161px">
-</a>
-<a href="Solutions/2023/Day15/BoxCollection.cs">
-  <img src=".aoc_tiles/tiles/2024/15.png" width="161px">
-</a>
-<a href="Solutions/2023/Day16/Beam.cs">
-  <img src=".aoc_tiles/tiles/2024/16.png" width="161px">
-</a>
-<a href="Solutions/2023/Day17/Program.cs">
-  <img src=".aoc_tiles/tiles/2024/17.png" width="161px">
-</a>
-<a href="Solutions/2023/Day18/DigPlan.cs">
-  <img src=".aoc_tiles/tiles/2024/18.png" width="161px">
-</a>
-<a href="Solutions/2023/Day19/MachineRule.cs">
-  <img src=".aoc_tiles/tiles/2024/19.png" width="161px">
-</a>
-<a href="Solutions/2023/Day20/Modules/Broadcaster.cs">
-  <img src=".aoc_tiles/tiles/2024/20.png" width="161px">
-</a>
-<a href="Solutions/2023/Day21/Program.cs">
-  <img src=".aoc_tiles/tiles/2024/21.png" width="161px">
-</a>
-<a href="Solutions/2023/Day22/Brick.cs">
-  <img src=".aoc_tiles/tiles/2024/22.png" width="161px">
-</a>
-<a href="Solutions/2023/Day23/Program.cs">
-  <img src=".aoc_tiles/tiles/2024/23.png" width="161px">
-</a>
-<a href="Solutions/2023/Day24/HailStone.cs">
-  <img src=".aoc_tiles/tiles/2024/24.png" width="161px">
-</a>
-<a href="Solutions/2023/Day25/Node.cs">
-  <img src=".aoc_tiles/tiles/2024/25.png" width="161px">
 </a>
 <!-- AOC TILES END --> 
 <h1 align="center">
