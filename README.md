@@ -17,10 +17,10 @@ Data is stored in a private repository and can be loaded via
 <a href="ProjectTemplate/SolverPart2.cs">
   <img src=".aoc_tiles/tiles/2024/02.png" width="161px">
 </a>
-<a href="Solutions/2023/Day03/Digit.cs">
+<a href="Solutions/2022/Day03/CharCalculator.cs">
   <img src=".aoc_tiles/tiles/2024/03.png" width="161px">
 </a>
-<a href="Solutions/2023/Day04/Card.cs">
+<a href="Solutions/2022/Day04/Program.cs">
   <img src=".aoc_tiles/tiles/2024/04.png" width="161px">
 </a>
 <!-- AOC TILES END --> 

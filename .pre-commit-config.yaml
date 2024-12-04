@@ -13,4 +13,4 @@ repos:
                  - --overwrite-year=2024
                  - --auto-add-tiles-to-git=amend
             #     - --language-sorting=jl,kt,py,rs
-                 - --exclude-patterns="2021/*/*.py ,2022/*/*.cs, 2023/*/*.cs, ProjectTemplate/*.cs, *.ps1"
+                 - --exclude-patterns= '*.cs,*.ps1'
