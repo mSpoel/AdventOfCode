@@ -1,5 +1,5 @@
-print('2022 - Day02 - Part 1')
-file = open("/workspaces/AdventOfCode/Solutions/2024/Day02/input.txt", "r")
+print('2024 - Day02 - Part 1')
+file = open("../../../Data/2024/Day01/input.txt", "r")
 numberOfSafe = 0
 for line in file:
     print(line)

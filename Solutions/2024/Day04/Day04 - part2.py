@@ -1,5 +1,5 @@
 print('2024 - Day04 - Part 2')
-with open("/workspaces/AdventOfCode/Solutions/2024/Day04/input.txt", "r") as file:
+with open("../../../Data/2024/Day04/input.txt", "r") as file:
     matrix = [list(line.strip()) for line in file]
 
 numberOfRows = len(matrix)
