@@ -1,4 +1,7 @@
 import copy
+import time
+
+start_time = time.time()
 
 print('2024 - Day06 - Part 2')
 
@@ -82,58 +85,60 @@ def get_direction(direction_matrix, position):
     row, col = position
     return direction_matrix[row][col]
 
-def isLoop(matrix, position, direction):
-    rows = len(matrix)
-    cols = len(matrix[0])
-    direction_matrix = [[-1 for _ in range(cols)] for _ in range(rows)]
-
-    while inBounds(matrix, position, direction):    
-        nextChar = get_next_character(matrix, position, direction)
-        nextDirection = get_next_direction(direction_matrix, position, direction)
-
-        currentChar = get_character(matrix, position)
-        if currentChar == '+' and nextDirection == direction:
-            return True
-
-
-        # if nextChar == '+' or (nextChar == '|' and (direction == 0 or direction == 2)) or (nextChar == '-' and (direction == 1 or direction == 3)):
-        #    storedDirection = get_direction(direction_matrix, position)
-        #    return storedDirection == nextDirection
-
-        while nextChar == '#' or nextChar == crate:
-            direction = turnRight(direction)
-            set_character(matrix, position, '+')
-            set_direction(direction_matrix, position, direction)
-            nextChar = get_next_character(matrix, position, direction)
-        
-        position = move(position, direction)
-        set_move_character(matrix, position, direction)
-        set_direction(direction_matrix, position, direction)
-
+def visited_before(visits, position, direction):
+    visit = (position, direction)
+    if visit in visits:
+        return True
+    
+    visits.add(visit)
     return False
 
-with open("/workspaces/AdventOfCode/Solutions/2024/Day06/example.txt", "r") as file:
+def isLoop(matrix, position, direction):
+    visits = set()
+    while inBounds(matrix, position, direction):
+        nextChar = get_next_character(matrix, position, direction)
+ 
+        while nextChar == '#' or nextChar == crate:
+            if visited_before(visits, position, direction):
+                return True
+
+            direction = turnRight(direction)
+            set_character(matrix, position, '+')
+            nextChar = get_next_character(matrix, position, direction)        
+        position = move(position, direction)
+        set_move_character(matrix, position, direction)
+        
+    return False    
+
+with open("/workspaces/AdventOfCode/Solutions/2024/Day06/input.txt", "r") as file:
     matrix = [list(line.strip()) for line in file]
 
-position = find_first_occurrence(matrix,  '^')
-
-rows = len(matrix)
-cols = len(matrix[0])
-
+position = find_first_occurrence(matrix, '^')
+start_position = position
 result = 0
+positions = set()
+direction = 0
 
-# crate_position = (8, 1)
-# place_crate(matrix, crate_position)
-# isLoop(matrix, position, 0)
+# Get the position on the path, only place crates there
+while inBounds(matrix, position, direction):   
+    set_character(matrix, position, 'X')
+    nextChar = get_next_character(matrix, position, direction)
+    if nextChar == '#':
+        direction = turnRight(direction)
+       
+    position = move(position, direction)
+    positions.add(position)   
 
-for row in range(0, rows):
-    for col in range(0, cols):
-        copy_matrix = copy.deepcopy(matrix)
-        crate_position = (row, col)
-        place_crate(copy_matrix, crate_position)
-        print(f'Checking for {crate_position}')
-        if isLoop(copy_matrix, position, 0):
-            result += 1
-            print(f'result: {result}')
+for crate_position in positions:
+    copy_matrix = copy.deepcopy(matrix)
+    place_crate(copy_matrix, crate_position)
+    print(f'Checking for {crate_position}')
+    if isLoop(copy_matrix, start_position, 0):
+        result += 1
+        print(f'result: {result}')
 
 print('result:', result)
+
+end_time = time.time()
+runtime = end_time - start_time
+print(f"Runtime: {runtime} seconds")
