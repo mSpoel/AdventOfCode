@@ -66,5 +66,5 @@ operators = {
 
 result = find_valid_equations(data)
 
-print(f'Result: {result}')
+print(f'Result: {result }')
 print_runtime(start_time)
