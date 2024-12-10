@@ -35,7 +35,7 @@ def get_next_nodes(matrix, node, current_height):
 start_time = initialize()
 result = 0
 
-with open("/workspaces/AdventOfCode/Solutions/2024/Day10/example.txt", "r") as file:
+with open("/workspaces/AdventOfCode/Solutions/2024/Day10/input.txt", "r") as file:
     matrix = [[int(char) for char in line.strip()] for line in file]
 
 print_matrix(matrix)
@@ -46,26 +46,30 @@ nodes = get_nodes_with(0, matrix)
 print(nodes)
 
 max_heigth = 9
-#possible_paths = len(nodes)
 
-for node in nodes:
-    number_of_nodes = len(node)
-    print(f'node: {node}')
+for start_node in nodes:
+    paths = [[start_node]]
+    number_of_nodes = len(start_node)
+    print(f'node: {start_node}')
     current_height = 0
     possible_paths = 1
-    next_nodes = get_next_nodes(matrix, node, current_height)
-    while len(next_nodes) > 0:
-        possible_paths += len(next_nodes) - 1
+
+    while paths and current_height != 9:
+        new_paths = []
+        for path in paths:
+            node = path[-1]
+            print(node)
+            next_nodes = get_next_nodes(matrix, node, current_height)
+            for next_node in next_nodes:
+                new_path = path + [next_node]
+                new_paths.append(new_path)
+        
         current_height += 1
-
-        #todo: make sure the paths are counted correctly
-        print(f'possible paths: {possible_paths} - nodes: {next_nodes} - current_height {current_height}')
-
-        next_next_nodes = set()
-        for next_node in next_nodes:
-            next_next_nodes.update(get_next_nodes(matrix, next_node, current_height))
-
-        next_nodes = next_next_nodes
+        paths = new_paths
+        print(f'Heigth: {current_height} - Paths: {paths}')
+    
+    result += len(paths)
+    print(f'Result: {result}')
 
 print(f'Result: {result}')
 
