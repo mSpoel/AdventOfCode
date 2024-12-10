@@ -9,7 +9,7 @@ Data is stored in a private repository and can be loaded via
 
 <!-- AOC TILES BEGIN -->
 <h1 align="center">
-  2024 - 18 ⭐ - Smalltalk
+  2024 - 19 ⭐ - Smalltalk
 </h1>
 <a href="ProjectTemplate/SolverPart1.cs">
   <img src=".aoc_tiles/tiles/2024/01.png" width="161px">
@@ -37,6 +37,9 @@ Data is stored in a private repository and can be loaded via
 </a>
 <a href="Solutions/2023/Day09/HistoryRecord.cs">
   <img src=".aoc_tiles/tiles/2024/09.png" width="161px">
+</a>
+<a href="Solutions/2023/Day10/Coordinate.cs">
+  <img src=".aoc_tiles/tiles/2024/10.png" width="161px">
 </a>
 <!-- AOC TILES END --> 
 <h1 align="center">
