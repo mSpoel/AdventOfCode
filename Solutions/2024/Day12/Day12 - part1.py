@@ -1,24 +1,27 @@
 from Helper import *
 
-def flood_fill(matrix, x, y, visited, char, region_nodes):
-    if (x < 0 or x >= len(matrix) or
-        y < 0 or y >= len(matrix[0]) or
-        visited[x][y] or matrix[x][y] != char):
-        return
+def flood_fill(matrix, x, y, visited, char):
+    stack = [(x, y)]
+    region_nodes = []
 
-    visited[x][y] = True
-    region_nodes.append((x, y))
+    while stack:
+        cx, cy = stack.pop()
+        if cx < 0 or cx >= len(matrix) or cy < 0 or cy >= len(matrix[0]) or visited[cx][cy] or matrix[cx][cy] != char:
+            continue
 
-    # Visit all 8 neighbors (up, down, left, right, and diagonals)
-    directions = [(-1, 0), (1, 0), (0, -1), (0, 1),
-                  (-1, -1), (-1, 1), (1, -1), (1, 1)]
+        visited[cx][cy] = True
+        region_nodes.append((cx, cy))
 
-    for dx, dy in directions:
-        flood_fill(matrix, x + dx, y + dy, visited, char, region_nodes)
+        # Visit all 8 neighbors (up, down, left, right, and diagonals)
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
+        for dx, dy in directions:
+            stack.append((cx + dx, cy + dy))
+
+    return region_nodes
 
 def get_unique_regions(matrix):
     if not matrix:
-        return {}
+        return []
 
     rows, cols = len(matrix), len(matrix[0])
     visited = [[False for _ in range(cols)] for _ in range(rows)]
@@ -28,27 +31,21 @@ def get_unique_regions(matrix):
         for j in range(cols):
             if not visited[i][j]:
                 char = matrix[i][j]
-                region_nodes = []
-                flood_fill(matrix, i, j, visited, char, region_nodes)
+                region_nodes = flood_fill(matrix, i, j, visited, char)
                 regions.append(region_nodes)
 
     return regions
 
-def get_neighbour_nodes(node):
-    row, col = node
-    neighbours = []
-    neighbours.append((row+1, col))
-    neighbours.append((row, col+1))
-    neighbours.append((row-1, col))
-    neighbours.append((row, col-1))
-    return neighbours
-
 def calculate_perimeter(nodes):
+    nodes_set = set(nodes)
     perimeter = 0
     for node in nodes:
+        row, col = node
+        # Check the 4 direct neighbors
+        neighbor_offsets = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         node_perimeter = 4
-        for neighbour_node in get_neighbour_nodes(node):
-            if neighbour_node in nodes:
+        for dr, dc in neighbor_offsets:
+            if (row + dr, col + dc) in nodes_set:
                 node_perimeter -= 1
         perimeter += node_perimeter
 
@@ -56,12 +53,10 @@ def calculate_perimeter(nodes):
 
 start_time = initialize()
 
-with open("/workspaces/AdventOfCode/Solutions/2024/Day12/input.txt", "r") as file:
+with open("/workspaces/AdventOfCode/Solutions/2024/Day12/example.txt", "r") as file:
     matrix = [line.strip() for line in file]
 
 print_matrix(matrix)
-rows = len(matrix)
-cols = len(matrix[0]) if rows > 0 else 0
 result = 0
 
 for region in get_unique_regions(matrix):
