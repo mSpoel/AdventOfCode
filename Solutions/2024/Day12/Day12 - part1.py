@@ -1,4 +1,5 @@
 from Helper import *
+import random
 
 def flood_fill(matrix, x, y, visited, char):
     stack = [(x, y)]
@@ -6,14 +7,16 @@ def flood_fill(matrix, x, y, visited, char):
 
     while stack:
         cx, cy = stack.pop()
-        if cx < 0 or cx >= len(matrix) or cy < 0 or cy >= len(matrix[0]) or visited[cx][cy] or matrix[cx][cy] != char:
+        if (cx < 0 or cx >= len(matrix) or
+            cy < 0 or cy >= len(matrix[0]) or
+            visited[cx][cy] or matrix[cx][cy] != char):
             continue
 
         visited[cx][cy] = True
         region_nodes.append((cx, cy))
 
-        # Visit all 8 neighbors (up, down, left, right, and diagonals)
-        directions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
+        # Visit only 4 neighbors (up, down, left, right)
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         for dx, dy in directions:
             stack.append((cx + dx, cy + dy))
 
@@ -42,30 +45,57 @@ def calculate_perimeter(nodes):
     for node in nodes:
         row, col = node
         # Check the 4 direct neighbors
-        neighbor_offsets = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        neighbor_offsets = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         node_perimeter = 4
         for dr, dc in neighbor_offsets:
-            if (row + dr, col + dc) in nodes_set:
+            neighbor = (row + dr, col + dc)
+            if neighbor in nodes_set:
                 node_perimeter -= 1
         perimeter += node_perimeter
 
     return perimeter
 
+def print_colored_matrix(matrix, regions):
+    colored_matrix = [list(row) for row in matrix]
+    colors = ['\033[91m', '\033[92m', '\033[93m', '\033[94m', '\033[95m', '\033[96m', '\033[97m']
+
+    for region in regions:
+        color = random.choice(colors)
+        for (x, y) in region:
+            colored_matrix[x][y] = f"{color}{matrix[x][y]}\033[0m"
+
+    for row in colored_matrix:
+        print("".join(row))
+
+def print_region(matrix, region):
+    region_matrix = [list(row) for row in matrix]
+    for (x, y) in region:
+        region_matrix[x][y] = f"\033[91m{matrix[x][y]}\033[0m"
+    for row in region_matrix:
+        print("".join(row))
+
 start_time = initialize()
 
-with open("/workspaces/AdventOfCode/Solutions/2024/Day12/example.txt", "r") as file:
+with open("/workspaces/AdventOfCode/Solutions/2024/Day12/input.txt", "r") as file:
     matrix = [line.strip() for line in file]
 
+print("Original Matrix:")
 print_matrix(matrix)
+
+regions = get_unique_regions(matrix)
 result = 0
 
-for region in get_unique_regions(matrix):
+for region in regions:
     perimeter = calculate_perimeter(region)
     number_of_nodes = len(region)
     price = perimeter * number_of_nodes
     print(f'perimeter: {perimeter} - number of nodes: {number_of_nodes} - price {price}')
+    # print("Region Structure:")
+    # print_region(matrix, region)
     result += price
 
-print(f'Result: {result}')
+print("Colored Matrix with Regions:")
+print_colored_matrix(matrix, regions)
 
+print(f'Result: {result}')
 print_runtime(start_time)
