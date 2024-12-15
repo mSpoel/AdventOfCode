@@ -13,14 +13,18 @@ def initialize():
     print(f'{year} - {file_name}')
     return start_time
 
+# def print_matrix(matrix):
+#     os.system('clear')
+#     for row in matrix:
+#         print("".join("🤖" if element == '@' 
+#                       else "🧱" if element == '#' 
+#                       else "📦" if element == 'O' 
+#                       else "  " if element == '.'
+#                       else element.ljust(2) for element in row))
+
 def print_matrix(matrix):
-    os.system('clear')
     for row in matrix:
-        print("".join("🤖" if element == '@' 
-                      else "🧱" if element == '#' 
-                      else "📦" if element == 'O' 
-                      else "  " if element == '.'
-                      else element.ljust(2) for element in row))
+        print("".join(row))
 
 def inBounds(rows, cols, node):
     row, col = node
