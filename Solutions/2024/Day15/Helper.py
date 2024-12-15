@@ -14,6 +14,7 @@ def initialize():
     return start_time
 
 def print_matrix(matrix):
+    os.system('clear')
     for row in matrix:
         print("".join("🤖" if element == '@' 
                       else "🧱" if element == '#' 
