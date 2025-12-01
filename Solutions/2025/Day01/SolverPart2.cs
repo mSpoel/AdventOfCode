@@ -42,7 +42,7 @@ namespace Day01
                     if (start == 0)
                     {
                         // Starting at 0 and moving left: don't count the starting position as a hit
-                        // You only hit 0 again every full 100 steps.
+                        // You only hit 0 again every full 100 steps
                         crossings = m / 100;
                     }
                     else
